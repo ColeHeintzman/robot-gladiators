@@ -11,6 +11,7 @@ for(var i = 0; i < enemyNames.length; i++) {
   }
 
 function fight(enemyNames) {
+    while(playerHealth > 0 && enemyHealth > 0) {
     window.alert("Welcome to Robot Gladiators!");
     var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle?");
     if (promptFight === "fight" || promptFight === "FIGHT") {
@@ -18,6 +19,7 @@ function fight(enemyNames) {
         console.log(playerName + " attacked " + enemyNames + "." + enemyNames + " now has " + enemyHealth + " health remaining. ");
         if (enemyHealth <= 0) {
             window.alert(enemyNames + " has died! ");
+            break;
         }
         else {
             window.alert(enemyNames + " still has " + enemyHealth + " health left.");
@@ -26,6 +28,7 @@ function fight(enemyNames) {
         console.log(enemyNames + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining. ");
         if (playerHealth <= 0) {
             window.alert(playerName + " has died!");
+            break;
         }
         else {
             window.alert(playerName + " still has " + playerHealth + " health left.");
@@ -35,14 +38,19 @@ function fight(enemyNames) {
         var confirmSkip = window.confirm("Are you sure you'd like to quit?");
         if (confirmSkip) {
             window.alert(playerName + " has decided to skip this fight.  goodbye!");
-            playerMoney = playerMoney - 2;
+            playerMoney = playerMoney - 10;
+            console.log("playerMoney", playerMoney);
+            break;
         }
     }
     else {
         fight();
     }
 }
+}
 
 for(var i = 0; i < enemyNames.length; i++) {
-    fight(enemyNames[i]);
+    var pickedEnemyName = enemyNames[i];
+    enemyHealth = 50;
+    fight(pickedEnemyName[i]);
   }
